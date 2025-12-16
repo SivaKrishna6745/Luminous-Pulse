@@ -61,6 +61,7 @@ const useBreathingEngine = () => {
         isActive,
         toggle,
         reset,
+        duration: durationMap[currentPhase],
     };
 };
 
