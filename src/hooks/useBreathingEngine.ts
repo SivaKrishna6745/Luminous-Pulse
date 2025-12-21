@@ -8,10 +8,10 @@ const useBreathingEngine = () => {
     const { inhaleDuration, inhaleHoldDuration, exhaleDuration, exhaleHoldDuration } = useBreathStore();
     const durationMap: Record<BreathPhase, number> = useMemo(
         () => ({
-            Inhale: inhaleDuration,
-            'Hold Full': inhaleHoldDuration,
-            Exhale: exhaleDuration,
-            'Hold Empty': exhaleHoldDuration,
+            Inhale: inhaleDuration * 1000,
+            'Hold Full': inhaleHoldDuration * 1000,
+            Exhale: exhaleDuration * 1000,
+            'Hold Empty': exhaleHoldDuration * 1000,
         }),
         [inhaleDuration, inhaleHoldDuration, exhaleDuration, exhaleHoldDuration]
     );

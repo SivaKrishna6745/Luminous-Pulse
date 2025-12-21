@@ -6,7 +6,7 @@ import useBreathingEngine from './hooks/useBreathingEngine';
 import { useState } from 'react';
 
 function App() {
-    const { currentPhase, toggle, isActive, reset, progress, timeLeft, duration } = useBreathingEngine();
+    const { currentPhase, toggle, isActive, reset, progress, timeLeft } = useBreathingEngine();
     const [isMute, setIsMute] = useState(false);
 
     function volume() {
@@ -16,7 +16,7 @@ function App() {
     return (
         <div className="flex flex-col items-center gap-30">
             <h1 className="text-3xl font-bold">Luminous Pulse</h1>
-            <Pulsar phase={currentPhase} progress={progress} timeLeft={timeLeft} duration={duration} />
+            <Pulsar phase={currentPhase} progress={progress} timeLeft={timeLeft} />
             <div className="flex justify-center gap-20">
                 <Button
                     className={isActive ? 'bg-yellow-300' : 'bg-green-300'}
