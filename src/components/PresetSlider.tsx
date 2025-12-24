@@ -8,8 +8,16 @@ const PresetSlider = ({ label, onChange, duration }: PresetSliderProps) => {
     return (
         <div className="flex justify-between px-5">
             <label htmlFor="inhale-slider">{label}</label>
-            <input type="range" name="slider" id="inhale-slider" min="0" max="15" value={0} onChange={onChange} />
-            <span>{duration}s</span>
+            <input
+                type="range"
+                name="slider"
+                id="inhale-slider"
+                min="0"
+                max="15"
+                value={duration}
+                onChange={onChange}
+            />
+            <span className="w-10">{duration}s</span>
         </div>
     );
 };
