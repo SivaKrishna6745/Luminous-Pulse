@@ -5,6 +5,7 @@ import Pulsar from './components/Pulsar';
 import useBreathingEngine from './hooks/useBreathingEngine';
 import { useState } from 'react';
 import SettingsModal from './components/SettingsModal';
+import { AnimatePresence, motion } from 'framer-motion';
 
 function App() {
     const { currentPhase, toggle, isActive, reset, progress, timeLeft } = useBreathingEngine();
@@ -47,10 +48,20 @@ function App() {
             </div>
 
             {/* Overlay */}
-            {modalOpen && <div className="fixed inset-0 z-40 bg-slate-950" onClick={closeSettings} />}
+            <AnimatePresence>
+                {modalOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+                        onClick={closeSettings}
+                    />
+                )}
+            </AnimatePresence>
 
             {/* Modal */}
-            {modalOpen && <SettingsModal onClose={closeSettings} />}
+            <AnimatePresence>{modalOpen && <SettingsModal onClose={closeSettings} />}</AnimatePresence>
         </div>
     );
 }

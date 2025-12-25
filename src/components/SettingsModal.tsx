@@ -5,6 +5,8 @@ import BreathingOptions from './BreathingOptions';
 import PresetSlider from './PresetSlider';
 import { type PresetKey } from '../types';
 import { PRESETS } from '../config/config.ts';
+import useBreakpoint from '../hooks/useBreakpoint.ts';
+import { motion } from 'framer-motion';
 
 interface SettingsModalProps {
     onClose: () => void;
@@ -12,6 +14,7 @@ interface SettingsModalProps {
 
 const SettingsModal = ({ onClose }: SettingsModalProps) => {
     const store = useBreathStore();
+    const { isMobile } = useBreakpoint();
     const [config, setConfig] = useState({
         inhale: store.inhaleDuration,
         holdIn: store.inhaleHoldDuration,
@@ -40,12 +43,25 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
         store.setInhaleHoldDuration(config.holdIn);
         store.setExhaleDuration(config.exhale);
         store.setExhaleHoldDuration(config.holdOut);
+        onClose();
     };
 
+    const variants = {
+        hidden: isMobile ? { y: '100%', x: 0 } : { x: '100%', y: 0 },
+        visible: { y: 0, x: 0 },
+        exit: isMobile ? { y: '100%', x: 0 } : { x: '100%', y: 0 },
+    };
+
+    const modalClasses = isMobile ? 'bottom-0 left-0 w-full h-[85vh]' : 'top-0 right-0 h-full w-[30%]';
+
     return (
-        <div
-            className="fixed inset-0 z-50 text-lg bg-white text-black rounded-xl px-10 py-5
-                  transform transition-all duration-300 ease-out scale-100 opacity-100"
+        <motion.div
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={`fixed z-50 text-lg bg-slate-700 rounded-md px-10 py-5
+                  transform transition-all duration-300 ease-out scale-100 opacity-100 ${modalClasses}`}
         >
             <div className="flex justify-between items-center relative my-5">
                 <h1 className="text-3xl">Breathing Pattern</h1>
@@ -100,7 +116,7 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
             >
                 Save
             </button>
-        </div>
+        </motion.div>
     );
 };
 
