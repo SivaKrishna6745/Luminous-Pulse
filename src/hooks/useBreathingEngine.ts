@@ -44,7 +44,9 @@ const useBreathingEngine = () => {
             if (remaining <= 0) {
                 const nextPhaseIndex = (phaseIndex + 1) % phaseCycle.length;
                 const nextPhase = phaseCycle[nextPhaseIndex];
-                setTimeLeft(durationMap[nextPhase]);
+                const nextDuration = durationMap[nextPhase];
+                setTimeLeft(nextDuration);
+                setPrevDuration(nextDuration);
                 setPhaseIndex(nextPhaseIndex);
             }
         }, 100);
@@ -54,7 +56,9 @@ const useBreathingEngine = () => {
     const toggle = () => setIsActive((prev) => !prev);
     const reset = () => {
         setIsActive(false);
-        setTimeLeft(durationMap[phaseCycle[0]]);
+        const startDuration = durationMap[phaseCycle[0]];
+        setTimeLeft(startDuration);
+        setPrevDuration(startDuration);
         setPhaseIndex(0);
     };
     const progress = ((activeDuration - timeLeft) / activeDuration) * 100;
