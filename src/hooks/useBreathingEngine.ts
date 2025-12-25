@@ -19,12 +19,17 @@ const useBreathingEngine = () => {
     const [phaseIndex, setPhaseIndex] = useState(0);
     const currentPhase = phaseCycle[phaseIndex];
     const activeDuration = durationMap[currentPhase];
+    const [prevDuration, setPrevDuration] = useState(activeDuration);
     const [timeLeft, setTimeLeft] = useState(activeDuration);
     const [isActive, setIsActive] = useState(false);
 
     const startTimeRef = useRef(0);
     const timeLeftRef = useRef(0);
 
+    if (activeDuration !== prevDuration) {
+        setPrevDuration(activeDuration);
+        if (!isActive) setTimeLeft(activeDuration);
+    }
     useEffect(() => {
         timeLeftRef.current = timeLeft;
     }, [timeLeft]);
@@ -61,7 +66,7 @@ const useBreathingEngine = () => {
         isActive,
         toggle,
         reset,
-        duration: durationMap[currentPhase],
+        activeDuration,
     };
 };
 
