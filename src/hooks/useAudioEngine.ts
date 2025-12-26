@@ -1,11 +1,12 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { SOUND_FREQUENCIES } from '../config/config';
 import type { BreathPhase } from '../types';
 
-const useAudioEngine = () => {
+const useAudioEngine = (isMute: boolean) => {
     const audioCtxRef = useRef<AudioContext | null>(null);
     const primaryOscillatorRef = useRef<OscillatorNode | null>(null);
     const secondaryOscillatorRef = useRef<OscillatorNode | null>(null);
+    const masterGainRef = useRef<GainNode | null>(null);
     const gainRef = useRef<GainNode | null>(null);
 
     const initialize = () => {
@@ -14,8 +15,13 @@ const useAudioEngine = () => {
 
         const gainNode = audioCtxRef.current.createGain();
         gainNode.gain.value = 0;
-        gainNode.connect(audioCtxRef.current.destination);
         gainRef.current = gainNode;
+
+        const masterGainNode = audioCtxRef.current.createGain();
+        masterGainNode.gain.value = 1;
+        gainNode.connect(masterGainNode);
+        masterGainNode.connect(audioCtxRef.current.destination);
+        masterGainRef.current = masterGainNode;
 
         const oscillatorNodeOne = audioCtxRef.current.createOscillator();
         oscillatorNodeOne.type = 'sine';
@@ -63,6 +69,18 @@ const useAudioEngine = () => {
         gainRef.current?.gain.setValueAtTime(gainRef.current?.gain.value, now);
         gainRef.current?.gain.linearRampToValueAtTime(0, now + 0.5);
     };
+
+    useEffect(() => {
+        if (!masterGainRef.current || !audioCtxRef.current) return;
+        const now = audioCtxRef.current.currentTime;
+        masterGainRef.current.gain.cancelScheduledValues(now);
+
+        if (isMute) {
+            masterGainRef.current.gain.setTargetAtTime(0, now, 0.1);
+        } else {
+            masterGainRef.current.gain.setTargetAtTime(1, now, 0.1);
+        }
+    }, [isMute]);
 
     return {
         initialize,

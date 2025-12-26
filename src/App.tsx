@@ -11,9 +11,9 @@ import useWakeLock from './hooks/useWakeLock';
 
 function App() {
     const { currentPhase, toggle, isActive, reset, progress, timeLeft, activeDuration } = useBreathingEngine();
-    const { initialize, playPhase, stop } = useAudioEngine();
-    useWakeLock(isActive);
     const [isMute, setIsMute] = useState(false);
+    const { initialize, playPhase, stop } = useAudioEngine(isMute);
+    useWakeLock(isActive);
     const [modalOpen, setModalOpen] = useState(false);
 
     function volume() {
