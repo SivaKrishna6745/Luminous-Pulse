@@ -3,12 +3,14 @@ import './App.css';
 import Button from './components/Button';
 import Pulsar from './components/Pulsar';
 import useBreathingEngine from './hooks/useBreathingEngine';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SettingsModal from './components/SettingsModal';
 import { AnimatePresence, motion } from 'framer-motion';
+import useAudioEngine from './hooks/useAudioEngine';
 
 function App() {
-    const { currentPhase, toggle, isActive, reset, progress, timeLeft } = useBreathingEngine();
+    const { currentPhase, toggle, isActive, reset, progress, timeLeft, activeDuration } = useBreathingEngine();
+    const { initialize, playPhase, stop } = useAudioEngine();
     const [isMute, setIsMute] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -24,6 +26,16 @@ function App() {
         setModalOpen(false);
     }
 
+    function handleToggle() {
+        if (!isActive) initialize();
+        toggle();
+    }
+
+    useEffect(() => {
+        if (isActive) playPhase(currentPhase, activeDuration / 1000);
+        else stop();
+    }, [currentPhase, activeDuration, isActive, playPhase, stop]);
+
     return (
         <div className="relative">
             <div className="flex flex-col items-center gap-36">
@@ -33,7 +45,7 @@ function App() {
                     <Button
                         className={isActive ? 'bg-yellow-300' : 'bg-green-300'}
                         label={isActive ? <Pause /> : <Play />}
-                        onClick={() => toggle()}
+                        onClick={() => handleToggle()}
                     />
                     <Button className="bg-red-300" label={<CircleStop />} onClick={() => reset()} />
                     <Button

@@ -5,8 +5,8 @@ export const PRESETS = {
 };
 
 export const SOUND_FREQUENCIES = {
-    Inhale: { start: 220, end: 440 },
-    'Hold Full': { start: 440, end: 440 },
-    Exhale: { start: 440, end: 220 },
-    'Hold Empty': { start: 220, end: 220 },
+    Inhale: { start: 107, end: 137 },
+    'Hold Full': { start: 137, end: 137 },
+    Exhale: { start: 137, end: 107 },
+    'Hold Empty': { start: 107, end: 107 },
 };
