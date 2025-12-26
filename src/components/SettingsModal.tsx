@@ -53,8 +53,8 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
     };
 
     const modalClasses = isMobile
-        ? 'bottom-0 left-0 w-full h-[85vh] border-t'
-        : 'top-0 right-0 h-full w-[30%] border-l';
+        ? 'bottom-0 left-0 w-full h-[85vh] border-t px-6'
+        : 'top-0 right-0 h-full w-[50%] lg:w-[40%] xl:w-[30%] border-l px-10';
 
     return (
         <motion.div
@@ -62,8 +62,7 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className={`fixed z-50 text-lg bg-slate-900/80 backdrop-blur-md shadow-2xl border-white/10 rounded-md px-10 py-5
-                  transform transition-all duration-300 ease-out scale-100 opacity-100 ${modalClasses}`}
+            className={`fixed z-50 text-lg bg-slate-900/80 backdrop-blur-md shadow-2xl border-white/10 rounded-md py-5 transform transition-all duration-300 ease-out scale-100 opacity-100 ${modalClasses}`}
         >
             <div className="flex justify-between items-center relative my-5">
                 <h1 className="text-3xl">Breathing Pattern</h1>

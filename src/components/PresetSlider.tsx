@@ -6,8 +6,10 @@ interface PresetSliderProps {
 
 const PresetSlider = ({ label, onChange, duration }: PresetSliderProps) => {
     return (
-        <div className="flex justify-between items-center px-5">
-            <label htmlFor="inhale-slider">{label}</label>
+        <div className="grid grid-cols-[1fr_2fr_0.5fr] md:grid-cols-[1fr_3fr_1fr] gap-2 md:gap-4 items-center">
+            <label htmlFor="inhale-slider" className="place-self-start whitespace-nowrap">
+                {label}
+            </label>
             <input
                 type="range"
                 name="slider"
@@ -16,9 +18,9 @@ const PresetSlider = ({ label, onChange, duration }: PresetSliderProps) => {
                 max="15"
                 value={duration}
                 onChange={onChange}
-                className="neon-slider"
+                className="neon-slider self-stretch"
             />
-            <span className="w-10">{duration}s</span>
+            <span className="w-10 place-self-end">{duration}s</span>
         </div>
     );
 };
