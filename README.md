@@ -1,73 +1,72 @@
-# React + TypeScript + Vite
+# 🌌 Luminous Breath
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A cyber-aesthetic breathing companion designed to help you focus, relax, and sleep using the **4-7-8** and **Box Breathing** techniques. Built with a focus on immersive audio-visual synchronization.
 
-Currently, two official plugins are available:
+[**🔴 Live Demo**](https://sivakrishna6745.github.io/Luminous-Pulse/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#### Home Page
 
-## React Compiler
+<img src="home.png" alt="home page" width="1200" />
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+#### Settings Modal
 
-## Expanding the ESLint configuration
+<img src="modal.png" alt="settings modal" width="1200" />
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+-   **🧘‍♂️ Audio-Visual Synchronization:** A custom "Pulsar" visualizer that expands and glows in perfect sync with your breath.
+-   **🔊 Real-Time Audio Synthesis:** No MP3 files. Uses the **Web Audio API** with dual detuned oscillators to generate organic, binaural-beat-style drones in real-time.
+-   **⚡ Cyberpunk Aesthetic:** Glassmorphism UI, neon-glow sliders, and reactive lighting effects.
+-   **🧠 Smart Presets:** One-tap configurations for popular techniques:
+    -   **Relax (4-7-8):** For sleep and anxiety reduction.
+    -   **Box Breathing (4-4-4-4):** For focus and stress management.
+    -   **Balance (5-5-5-5):** For coherence and HRV training.
+-   **🔋 Wake Lock API:** Prevents your phone screen from turning off during a session.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+-   **Frontend:** React, TypeScript, Vite
+-   **Styling:** Tailwind CSS (Custom animations & Glassmorphism)
+-   **State Management:** React Hooks (Custom `useAudioEngine`, `useBreathingEngine`)
+-   **Audio:** Web Audio API (Oscillators, Gain Nodes)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+If you want to run this locally or contribute:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1.  **Clone the repository**
+
+    ```bash
+    git clone [https://github.com/](https://github.com/)<your-username>/<repo-name>.git
+    cd <repo-name>
+    ```
+
+2.  **Install dependencies**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server**
+
+    ```bash
+    npm run dev
+    ```
+
+4.  **Build for production**
+    ```bash
+    npm run build
+    ```
+
+## 🎮 How to Use
+
+1.  **Select a Pattern:** Open settings and choose a preset (Sleep, Focus, Balance) or customize the sliders manually.
+2.  **Turn up Volume:** The audio engine generates calming low-frequency tones.
+3.  **Sync your Breath:**
+    -   **Inhale** as the circle expands and glows bright.
+    -   **Hold** as the circle stays steady.
+    -   **Exhale** as the circle shrinks and dims.
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
