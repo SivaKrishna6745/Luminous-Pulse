@@ -52,7 +52,9 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
         exit: isMobile ? { y: '100%', x: 0 } : { x: '100%', y: 0 },
     };
 
-    const modalClasses = isMobile ? 'bottom-0 left-0 w-full h-[85vh]' : 'top-0 right-0 h-full w-[30%]';
+    const modalClasses = isMobile
+        ? 'bottom-0 left-0 w-full h-[85vh] border-t'
+        : 'top-0 right-0 h-full w-[30%] border-l';
 
     return (
         <motion.div
@@ -60,7 +62,7 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className={`fixed z-50 text-lg bg-slate-700 rounded-md px-10 py-5
+            className={`fixed z-50 text-lg bg-slate-900/80 backdrop-blur-md shadow-2xl border-white/10 rounded-md px-10 py-5
                   transform transition-all duration-300 ease-out scale-100 opacity-100 ${modalClasses}`}
         >
             <div className="flex justify-between items-center relative my-5">
