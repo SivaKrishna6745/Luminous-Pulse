@@ -7,10 +7,12 @@ import { useEffect, useState } from 'react';
 import SettingsModal from './components/SettingsModal';
 import { AnimatePresence, motion } from 'framer-motion';
 import useAudioEngine from './hooks/useAudioEngine';
+import useWakeLock from './hooks/useWakeLock';
 
 function App() {
     const { currentPhase, toggle, isActive, reset, progress, timeLeft, activeDuration } = useBreathingEngine();
     const { initialize, playPhase, stop } = useAudioEngine();
+    useWakeLock(isActive);
     const [isMute, setIsMute] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
 
