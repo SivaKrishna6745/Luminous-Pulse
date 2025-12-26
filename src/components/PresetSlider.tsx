@@ -6,7 +6,7 @@ interface PresetSliderProps {
 
 const PresetSlider = ({ label, onChange, duration }: PresetSliderProps) => {
     return (
-        <div className="flex justify-between px-5">
+        <div className="flex justify-between items-center px-5">
             <label htmlFor="inhale-slider">{label}</label>
             <input
                 type="range"
@@ -16,6 +16,7 @@ const PresetSlider = ({ label, onChange, duration }: PresetSliderProps) => {
                 max="15"
                 value={duration}
                 onChange={onChange}
+                className="neon-slider"
             />
             <span className="w-10">{duration}s</span>
         </div>
