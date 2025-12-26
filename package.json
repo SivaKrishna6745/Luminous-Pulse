@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
-    "homepage": "https://sivakrishna6745.github.io/luminous-pulse",
+    "homepage": "https://sivakrishna6745.github.io/Luminous-Pulse",
     "scripts": {
         "dev": "vite",
         "build": "tsc -b && vite build",
